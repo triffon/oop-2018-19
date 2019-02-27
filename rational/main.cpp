@@ -2,21 +2,20 @@
 #include <cmath>
 
 #include "rational.h"
-using namespace std;
 
 void testRational() {
   Rational r1, r2(1, 2);
 
-  r1.print();cout << endl;
-  cout << r2.toDouble() << endl;
+  r1.print();std::cout << std::endl;
+  std::cout << r2.toDouble() << std::endl;
   r2.read();
-  r2.print();cout << endl;
-  cout << r2.toDouble() << endl;
+  r2.print();std::cout << std::endl;
+  std::cout << r2.toDouble() << std::endl;
   Rational r3(1, 2);
-  add(r2, r3).print();cout << endl;
-  subtract(r2, r3).print();cout << endl;
-  multiply(r2, r3).print();cout << endl;
-  divide(r2, r3).print();cout << endl;
+  add(r2, r3).print();std::cout << std::endl;
+  subtract(r2, r3).print();std::cout << std::endl;
+  multiply(r2, r3).print();std::cout << std::endl;
+  divide(r2, r3).print();std::cout << std::endl;
 }
 
 Rational rationalExp(int k, int n) {
@@ -34,20 +33,23 @@ Rational rationalExp(int k, int n) {
 
 void testExp() {
   int k;
-  cout << "k = ";cin >> k;
+  std::cout << "k = ";std::cin >> k;
   int n;
-  cout.precision(10);
-  cout << "n = ";cin >> n;
+  std::cout.precision(10);
+  std::cout << "n = ";std::cin >> n;
   for(int i = 0; i <= n; i++) {
     Rational result = rationalExp(k, i);
-    cout << "result = ";result.print();cout << endl;
-    cout << "result ≈ " << result.toDouble() << endl;
-    cout << "exp(k) = " << exp(k) << endl;
+    std::cout << "result = ";result.print();std::cout << std::endl;
+    std::cout << "result ≈ " << result.toDouble() << std::endl;
+    std::cout << "exp(k) = " << exp(k) << std::endl;
   }
+  // !!!  std::cout << numer;
 }
 
 int main() {
   //testRational();
   testExp();
+  const Rational ONE_HALF(1, 2);
+  // !!! ONE_HALF.read();
   return 0;
 }

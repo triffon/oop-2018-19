@@ -1,6 +1,13 @@
 #include <iostream>
 #include "rational.h"
-using namespace std;
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+void set(int n, int d) {
+  cout << "I am the global function set!\n";
+}
 
 // Ниво 1: служебни селектори и мутатори
 long Rational::gcd(long x, long y) {
@@ -32,13 +39,15 @@ Rational::Rational() {
 
 Rational::Rational(long n, long d) {
   set(n, d);
+  // !!! ::set(n, d);
 }
 
-void Rational::print() {
+void Rational::print() const {
+  // !!! numer++;
   cout << numer << '/' << denom;
 }
 
-double Rational::toDouble() {
+double Rational::toDouble() const {
   return (double)numer / denom;
 }
 
@@ -52,6 +61,7 @@ void Rational::read() {
 
 // Ниво 2: аритметични операции
 Rational add(Rational p, Rational q) {
+  // !!! cout << this->getNumerator() << endl;
   return Rational(p.getNumerator() * q.getDenominator() +
                   q.getNumerator() * p.getDenominator(),
                   p.getDenominator() * q.getDenominator());
