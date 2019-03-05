@@ -23,6 +23,11 @@ public:
   double distanceToOrigin() const;
   double distanceTo(Point2D p) const;
   void translate(Point2D v);
+  void reflect();
+  // домашно
+  // симетрия относно ос
+  // симетрия относно точка
+  // ротация относно точка с ъгъл
 };
 
 #endif
