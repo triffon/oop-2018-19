@@ -2,14 +2,7 @@
 #include <cmath>
 #include "point2d.h"
 
-Point2D::Point2D() {
-  x = y = 0;
-}
-
-Point2D::Point2D(double xCoord, double yCoord) {
-  x = xCoord;
-  y = yCoord;
-}
+Point2D::Point2D(double xCoord, double yCoord) : x(xCoord), y(yCoord) {}
 
 void Point2D::print() const {
   std::cout << '(' << getX()

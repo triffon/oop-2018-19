@@ -7,8 +7,7 @@ class Point2D {
 
 public:
   // Ниво 1: конструктори
-  Point2D();
-  Point2D(double x, double y);
+  Point2D(double x = 0, double y = 0);
 
   // Ниво 1: селектори
   double getX() const { return x; }

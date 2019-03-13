@@ -32,11 +32,6 @@ void Rational::set(long n, long d) {
 }
   
 // Ниво 1: конструктори
-Rational::Rational() {
-  numer = 0;
-  denom = 1;
-}
-
 Rational::Rational(long n, long d) {
   set(n, d);
   // !!! ::set(n, d);

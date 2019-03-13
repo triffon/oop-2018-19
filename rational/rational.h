@@ -13,8 +13,7 @@ class Rational {
 
 public:
   // Ниво 1: конструктори
-  Rational();
-  Rational(long n, long d);
+  Rational(long n = 0, long d = 1);
 
   // Ниво 1: селектори
   long getNumerator()   const { return numer; }
