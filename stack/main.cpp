@@ -98,13 +98,76 @@ void testExpression() {
   std::cout << "Въведете израз: ";
   std::cin.getline(expr, MAXEXPR);
   char const *s = expr;
-  std::cout << "Резултатът е: " << calculate_expr(s) << std::endl;
-  
+  std::cout << "Резултатът е: " << calculate_expr(s) << std::endl;  
+}
+
+bool isOpenParenthesis(char c) {
+  return c == '(' || c == '[' || c == '{';
+}
+
+bool isCloseParenthesis(char c) {
+  return c == ')' || c == ']' || c == '}';
+}
+
+bool matchParentheses(char open, char close) {
+  return
+    (open == '(' && close == ')') ||
+    (open == '[' && close == ']') ||
+    (open == '{' && close == '}');
+}
+
+bool checkParentheses(char const* expr) {
+  Stack pstack;
+  while(*expr) {
+    if (isOpenParenthesis(*expr))
+      pstack.push(*expr);
+    else
+      if (isCloseParenthesis(*expr))
+        if (pstack.empty() ||  // повече затварящи
+            !matchParentheses(pstack.pop(), *expr)) // несъвпадащи скоби
+          return false;
+    expr++;
+  }
+  return pstack.empty(); // повече отварящи
+}
+
+void testParenthesesExpression(char const* expr, bool expectedResult) {
+  bool result = checkParentheses(expr);
+  std::cout << "[";
+  if (result == expectedResult)
+    std::cout << "OK";
+  else
+    std::cout << "ERROR!";
+  std::cout << "] ";
+  std::cout << "checkParentheses(" << expr << ") = " << result << std::endl;
+}
+
+void testParentheses() {
+  std::cout << "------------------------------\n";
+  testParenthesesExpression("(2+3)", true);
+  testParenthesesExpression("((2+3)", false);
+  testParenthesesExpression("(2+3))", false);
+  testParenthesesExpression("(2+3]", false);
+  testParenthesesExpression("(2+(3+(4+5)))", true);
+  testParenthesesExpression("(((2+3)+4)+5)", true);
+  testParenthesesExpression("{2+[(3-4)+5]}", true);
+  testParenthesesExpression("{2+[(3-4)+5}]", false);
+  testParenthesesExpression("", true);
+  testParenthesesExpression("(", false);
+  testParenthesesExpression("}", false);
+  testParenthesesExpression("32408923408732487+239847", true);
+  testParenthesesExpression("(((((([[[{{[[[[{[{", false);
+  testParenthesesExpression(")))]]]}}}))", false);
+  testParenthesesExpression(")2(", false);
+  testParenthesesExpression("(+)", true);
+  testParenthesesExpression("(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))", true);
+  std::cout << "------------------------------\n\n\n";
 }
 
 int main() {
   // testStack();
   // testPrintInBase();
-  testExpression();
+  // testExpression();
+  testParentheses();
   return 0;
 }

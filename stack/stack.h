@@ -1,7 +1,7 @@
 #ifndef __STACK_H
 #define __STACK_H
 
-const int MAX_STACK = 100;
+const int MAX_STACK = 200;
 const int EMPTY_STACK = -1;
 
 class Stack {
@@ -10,6 +10,9 @@ class Stack {
   int top;           // връх на стека
                      // индекс на последно включения елемент в стека
 
+  // проверка за пълен стек
+  bool full() const;
+
 public:
   // създаване на празен стек
   Stack();
@@ -17,8 +20,8 @@ public:
   // проверка за празнота на стек
   bool empty() const;
 
-  // включване на елемент
-  void push(int x);
+  // включване на елемент и връща дали е било успешно
+  bool push(int x);
 
   // изключване на елемент
   int pop();
