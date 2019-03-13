@@ -1,5 +1,8 @@
 #include <iostream>
-#include "stack.h"
+//#include "stack.h"
+#include "rstack.h"
+
+using Stack = ResizingStack;
 
 void testStack() {
   Stack s;
