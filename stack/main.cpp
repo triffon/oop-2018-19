@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cstring>
 //#include "stack.h"
-#include "rstack.h"
+//#include "rstack.h"
+#include "lstack.h"
 
-using Stack = ResizingStack;
+using Stack = LinkedStack;
 
 void testStack() {
   Stack s;
@@ -135,6 +137,9 @@ bool checkParentheses(char const* expr) {
 }
 
 void testParenthesesExpression(char const* expr, bool expectedResult) {
+  char const* printexpr = expr;
+  if (strlen(expr) > 100)
+    printexpr = "...";
   bool result = checkParentheses(expr);
   std::cout << "[";
   if (result == expectedResult)
@@ -142,7 +147,7 @@ void testParenthesesExpression(char const* expr, bool expectedResult) {
   else
     std::cout << "ERROR!";
   std::cout << "] ";
-  std::cout << "checkParentheses(" << expr << ") = " << result << std::endl;
+  std::cout << "checkParentheses(" << printexpr << ") = " << result << std::endl;
 }
 
 void testParentheses() {
@@ -164,13 +169,34 @@ void testParentheses() {
   testParenthesesExpression(")2(", false);
   testParenthesesExpression("(+)", true);
   testParenthesesExpression("(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))", true);
+  const int MAX = 10000;
+  char* testexpr = new char[MAX * 2 + 1];
+  char* s = testexpr;
+  for(int i = 0; i < MAX; i++)
+    *s++ = '(';
+  for(int i = 0; i < MAX; i++)
+    *s++ = ')';
+  *s = '\0';
+  testParenthesesExpression(testexpr, true);
+  delete[] testexpr;
   std::cout << "------------------------------\n\n\n";
+}
+
+void testCopy() {
+  Stack s1;
+  for(int i = 0; i < 10; i++)
+    s1.push(i);
+  Stack s2 = s1;
+  s2.pop();
+  s2.push(20);
+  std::cout << s1.pop() << std::endl; // 20?!?!
 }
 
 int main() {
   // testStack();
   // testPrintInBase();
   // testExpression();
-  testParentheses();
+  // testParentheses();
+  testCopy();
   return 0;
 }

@@ -2,6 +2,8 @@
 #include "rstack.h"
 
 ResizingStack::ResizingStack() {
+  capacity = INITIAL_CAPACITY;
+  a = new int[capacity];
   top = EMPTY_STACK;
 }
 
@@ -11,8 +13,7 @@ bool ResizingStack::empty() const {
 
 bool ResizingStack::push(int x) {
   if (full()) {
-    std::cerr << "Опит за добавяне в пълен стек!\n";
-    return false;
+    resize();
   }
   
   a[++top] = x;
@@ -38,5 +39,16 @@ int ResizingStack::peek() const {
 }
 
 bool ResizingStack::full() const {
-  return top == MAX_STACK - 1;
+  return top >= capacity - 1;
+}
+
+void ResizingStack::resize() {
+  int new_capacity = capacity * RESIZE_FACTOR;
+  std::clog << "Разширяваме стека до " << new_capacity << " елемента\n";
+  int* newa = new int[new_capacity];
+  for(int i = 0; i < capacity; i++)
+    newa[i] = a[i];
+  delete[] a;
+  a = newa;
+  capacity = new_capacity;
 }
