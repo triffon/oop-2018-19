@@ -1,10 +1,6 @@
 #ifndef __LSTACK_H
 #define __LSTACK_H
 
-const int INITIAL_CAPACITY = 10;
-const int EMPTY_STACK = -1;
-const int RESIZE_FACTOR = 2;
-
 struct StackElement {
   int data;
   StackElement* next;

@@ -4,6 +4,7 @@
 //#include "rstack.h"
 #include "lstack.h"
 
+//using Stack = ResizingStack;
 using Stack = LinkedStack;
 
 void testStack() {
@@ -192,11 +193,22 @@ void testCopy() {
   std::cout << s1.pop() << std::endl; // 20?!?!
 }
 
+void testCreateDestroy() {
+  for(int i = 0; i < 1E8; i++) {
+    // Stack s;
+    Stack* s = new Stack;
+    for(int j = 0; j < 10; j++)
+      s->push(j);
+    delete s;
+  }
+}
+
 int main() {
   // testStack();
   // testPrintInBase();
   // testExpression();
   // testParentheses();
-  testCopy();
+  // testCopy();
+  testCreateDestroy();
   return 0;
 }
