@@ -211,7 +211,7 @@ int main() {
   // testPrintInBase();
   // testExpression();
   // testParentheses();
-  testCopy();
-  // testCreateDestroy();
+  // testCopy();
+  testCreateDestroy();
   return 0;
 }

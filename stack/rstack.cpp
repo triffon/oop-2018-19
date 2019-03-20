@@ -60,3 +60,12 @@ ResizingStack::ResizingStack(ResizingStack const& rs)
   for(int i = 0; i <= top; i++)
     a[i] = rs.a[i];
 }
+
+ResizingStack::~ResizingStack() {
+  delete[] a;
+  /*
+  a = nullptr;
+  top = 0;
+  capacity = 0;
+  */
+}

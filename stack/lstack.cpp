@@ -57,3 +57,10 @@ LinkedStack::LinkedStack(LinkedStack const& ls) : top(nullptr) {
   while (!tmp.empty())
     push(tmp.pop());
 }
+
+LinkedStack::~LinkedStack() {
+  // !!! delete top;
+  while (!empty()) {
+    pop();
+  }
+}

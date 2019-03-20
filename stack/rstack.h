@@ -36,6 +36,8 @@ public:
 
   // поглеждане на последно включения елемент
   int peek() const;
+
+  ~ResizingStack();
 };
 
 #endif

@@ -21,6 +21,8 @@ public:
   void setScore(int s);
   
   void print() const;
+
+  ~Player();
 };
 
 #endif

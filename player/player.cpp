@@ -29,3 +29,7 @@ void Player::print() const {
             << " има " << score << " точки"
             << std::endl;
 }
+
+Player::~Player() {
+  delete[] name;
+}

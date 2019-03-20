@@ -28,6 +28,8 @@ public:
 
   // поглеждане на последно включения елемент
   int peek() const;
+
+  ~LinkedStack();
 };
 
 #endif
