@@ -2,14 +2,22 @@
 #include <cstring>
 #include "player.h"
 
-Player::Player(char const* n, int s) : score(s) {
-  name = new char[MAX_NAME];
+Player::Player(char const* n, int s) : name(nullptr), score(s) {
   setName(n);
 }
 
+Player::Player(Player const& p) : name(nullptr), score(p.score) {
+  // !!! name = p.name;
+  // !!! name = new char[std::max((int)strlen(p.name) + 1, MAX_NAME)];
+  // !!! strcpy(name, p.name);
+  setName(p.name);
+}
+
 void Player::setName(char const* n) {
-  strncpy(name, n, MAX_NAME);
-  name[MAX_NAME - 1] = '\0';
+  delete[] name;
+  const int NAME_LENGTH = strlen(n);
+  name = new char[NAME_LENGTH + 1];
+  strcpy(name, n);
 }
 
 void Player::setScore(int s) {
