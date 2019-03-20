@@ -22,6 +22,9 @@ public:
   // създаване на празен стек
   ResizingStack();
 
+  // конструктор за копиране
+  ResizingStack(ResizingStack const&);
+
   // проверка за празнота на стек
   bool empty() const;
 

@@ -52,3 +52,11 @@ void ResizingStack::resize() {
   a = newa;
   capacity = new_capacity;
 }
+
+ResizingStack::ResizingStack(ResizingStack const& rs)
+  : top(rs.top), capacity(rs.capacity) {
+  // !!! a = rs.a;
+  a = new int[capacity];
+  for(int i = 0; i <= top; i++)
+    a[i] = rs.a[i];
+}
