@@ -13,6 +13,7 @@ public:
   
   Player(char const* n = "<Анонимен>", int s = 0);
   Player(Player const& p);
+  Player& operator=(Player const& p);
 
   char const* getName() const { return name; }
   int getScore() const        { return score; }

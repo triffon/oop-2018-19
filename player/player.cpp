@@ -33,3 +33,11 @@ void Player::print() const {
 Player::~Player() {
   delete[] name;
 }
+
+Player& Player::operator=(Player const& p) {
+  if (this != &p) {
+    setName(p.name);
+    score = p.score;
+  }
+  return *this;
+}
