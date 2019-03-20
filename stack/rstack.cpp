@@ -53,12 +53,17 @@ void ResizingStack::resize() {
   capacity = new_capacity;
 }
 
-ResizingStack::ResizingStack(ResizingStack const& rs)
-  : top(rs.top), capacity(rs.capacity) {
+void ResizingStack::copy(ResizingStack const& rs) {
+  top = rs.top;
+  capacity = rs.capacity;
   // !!! a = rs.a;
   a = new int[capacity];
   for(int i = 0; i <= top; i++)
     a[i] = rs.a[i];
+}
+
+ResizingStack::ResizingStack(ResizingStack const& rs) {
+  copy(rs);
 }
 
 ResizingStack::~ResizingStack() {
@@ -68,4 +73,12 @@ ResizingStack::~ResizingStack() {
   top = 0;
   capacity = 0;
   */
+}
+
+ResizingStack& ResizingStack::operator=(ResizingStack const& rs) {
+  if (this != &rs) {
+    delete[] a;
+    copy(rs);
+  }
+  return *this;
 }

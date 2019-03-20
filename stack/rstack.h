@@ -18,12 +18,18 @@ class ResizingStack {
   // разширяване на стека
   void resize();
 
+  // копиране на стека
+  void copy(ResizingStack const& rs);
+
 public:
   // създаване на празен стек
   ResizingStack();
 
   // конструктор за копиране
   ResizingStack(ResizingStack const&);
+
+  // операция за присвояване
+  ResizingStack& operator=(ResizingStack const&);
 
   // проверка за празнота на стек
   bool empty() const;
