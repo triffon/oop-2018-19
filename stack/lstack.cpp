@@ -40,8 +40,9 @@ int LinkedStack::peek() const {
   return top->data;
 }
 
-LinkedStack::LinkedStack(LinkedStack const& ls) : top(nullptr) {
-  // !!! top = ls.top;
+void LinkedStack::copy(LinkedStack const& ls) {
+  top = nullptr;
+    // !!! top = ls.top;
   /*
   !!! LinkedStack tmp = ls;
   while (!tmp.empty()) {
@@ -56,11 +57,28 @@ LinkedStack::LinkedStack(LinkedStack const& ls) : top(nullptr) {
   }
   while (!tmp.empty())
     push(tmp.pop());
+
 }
 
-LinkedStack::~LinkedStack() {
+LinkedStack::LinkedStack(LinkedStack const& ls)  {
+  copy(ls);
+}
+
+void LinkedStack::erase() {
   // !!! delete top;
   while (!empty()) {
     pop();
   }
+}
+
+LinkedStack::~LinkedStack() {
+  erase();
+}
+
+LinkedStack& LinkedStack::operator=(LinkedStack const& ls) {
+  if (this != &ls) {
+    erase();
+    copy(ls);
+  }
+  return *this;
 }

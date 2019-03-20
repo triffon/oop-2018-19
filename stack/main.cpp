@@ -187,7 +187,8 @@ void testCopy() {
   Stack s1;
   for(int i = 0; i < 10; i++)
     s1.push(i);
-  Stack s2 = s1;
+  Stack s2;
+  s2 = s1;
   s2.pop();
   s2.push(20);
   std::cout << s1.pop() << std::endl; // 20?!?!
@@ -211,7 +212,7 @@ int main() {
   // testPrintInBase();
   // testExpression();
   // testParentheses();
-  // testCopy();
-  testCreateDestroy();
+  testCopy();
+  // testCreateDestroy();
   return 0;
 }
