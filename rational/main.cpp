@@ -19,7 +19,7 @@ void testRational() {
 }
 
 Rational rationalExp(int k, int n) {
-  Rational result(0, 1), yi(1, 1);
+  Rational result = 0, yi = 1;
   for(int i = 0; i <= n; i++, yi = multiply(yi, Rational(k, i)))
     // result да е сумата до <i
     // yi да е i-тия общ член
