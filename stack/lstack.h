@@ -14,6 +14,9 @@ public:
   // създаване на празен стек
   LinkedStack();
 
+  // конструктор за копиране
+  LinkedStack(LinkedStack const& ls);
+
   // проверка за празнота на стек
   bool empty() const;
 

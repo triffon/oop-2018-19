@@ -191,6 +191,9 @@ void testCopy() {
   s2.pop();
   s2.push(20);
   std::cout << s1.pop() << std::endl; // 20?!?!
+  while (!s2.empty())
+    std::cout << s2.pop() << ' ';
+  std::cout << std::endl;
 }
 
 void testCreateDestroy() {
@@ -208,7 +211,7 @@ int main() {
   // testPrintInBase();
   // testExpression();
   // testParentheses();
-  // testCopy();
-  testCreateDestroy();
+  testCopy();
+  // testCreateDestroy();
   return 0;
 }

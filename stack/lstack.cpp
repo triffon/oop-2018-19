@@ -39,3 +39,21 @@ int LinkedStack::peek() const {
 
   return top->data;
 }
+
+LinkedStack::LinkedStack(LinkedStack const& ls) : top(nullptr) {
+  // !!! top = ls.top;
+  /*
+  !!! LinkedStack tmp = ls;
+  while (!tmp.empty()) {
+    push(tmp.pop());
+  }
+  */
+  StackElement* p = ls.top;
+  LinkedStack tmp;
+  while (p != nullptr) {
+    tmp.push(p->data);
+    p = p->next;
+  }
+  while (!tmp.empty())
+    push(tmp.pop());
+}
