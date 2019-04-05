@@ -49,7 +49,10 @@ void testReadPrintFindArray() {
   // std::cout << findInArray(1., b, nb) << std::endl;
   std::cout << findInArray<double>(1, b, nb) << std::endl;
   Rational x(2, 3);
-  std::cout << findInArray(x, d, nd) << std::endl;
+  std::cout << findInArray<Rational>(x, d, nd) << std::endl;
+  Point2D p(1, 5);
+  Point2D pa[] = { Point2D(3, 5), Point2D(1, 5), Point2D(1, 7), Point2D(2, 15) };
+  // !!! std::cout << findInArray(p, pa, 4) << std::endl;
 }
 
 int main() {
