@@ -2,10 +2,10 @@
 #include <cstring>
 //#include "stack.h"
 //#include "rstack.h"
-#include "lstack.h"
+#include "lstack.cpp"
 
 //using Stack = ResizingStack;
-using Stack = LinkedStack;
+using Stack = LinkedStack<int>;
 
 void testStack() {
   Stack s;
