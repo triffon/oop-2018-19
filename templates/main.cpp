@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../geometry/point2d.h"
+#include "../geometry/point2d.cpp"
 #include "../rational/rational.h"
 
 const int MAX = 100;
@@ -36,7 +36,7 @@ bool findInArray(T const& x, T const* a, unsigned n) {
 void testReadPrintFindArray() {
   int a[MAX];
   double b[MAX];
-  Point2D c[MAX];
+  Point2D<int> c[MAX];
   Rational d[MAX];
   unsigned na, nb, nd;
   printArray(a, na = readArray(a));
@@ -50,8 +50,8 @@ void testReadPrintFindArray() {
   std::cout << findInArray<double>(1, b, nb) << std::endl;
   Rational x(2, 3);
   std::cout << findInArray<Rational>(x, d, nd) << std::endl;
-  Point2D p(1, 5);
-  Point2D pa[] = { Point2D(3, 5), Point2D(1, 5), Point2D(1, 7), Point2D(2, 15) };
+  // Point2D p(1, 5);
+  // Point2D pa[] = { Point2D(3, 5), Point2D(1, 5), Point2D(1, 7), Point2D(2, 15) };
   // !!! std::cout << findInArray(p, pa, 4) << std::endl;
 }
 

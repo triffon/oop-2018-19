@@ -25,7 +25,12 @@ void Rational::set(long n, long d) {
     numer = 0;
     denom = 1;
   } else {
-    long g = gcd(n, d);
+    if (d < 0) {
+      n = -n;
+      d = -d;
+    }
+    // d > 0
+    long g = gcd(abs(n), d);
     numer = n / g;
     denom = d / g;
   }

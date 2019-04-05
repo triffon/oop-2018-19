@@ -23,7 +23,7 @@ void Point3D::print() const {
 }
 
 double Point3D::distanceToOrigin() const {
-  Point2D q(getP().distanceToOrigin(),
+  DoublePoint q(getP().distanceToOrigin(),
             getZ());
   return q.distanceToOrigin();
 }
@@ -38,7 +38,7 @@ double Point3D::distanceTo(Point3D q) const {
 void Point3D::translate(Point3D q) {
   // !!! p.translate(q.getP());
   // !!! getP().translate(q.getP());
-  Point2D tmp = getP();
+  DoublePoint tmp = getP();
   tmp.translate(q.getP());
   setP(tmp);
   setZ(getZ() + q.getZ());
@@ -47,7 +47,7 @@ void Point3D::translate(Point3D q) {
 
 void Point3D::reflect() {
   // !!! p.reflect();
-  Point2D tmp = getP();
+  DoublePoint tmp = getP();
   tmp.reflect();
   setP(tmp);
   setZ(-getZ());
