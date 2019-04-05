@@ -1,6 +1,8 @@
 #ifndef __RATIONAL_H
 #define __RATIONAL_H
 
+#include <iostream>
+
 class Rational {
   // Ниво 0: физическо представяне
   // Искаме numer и denom да са несъкратими
@@ -19,17 +21,26 @@ public:
   long getNumerator()   const { return numer; }
   long getDenominator() const { return denom; }
 
-  void print() const;
   double toDouble() const;
+  
+  operator double() const;
 
-  // Ниво 2: мутатори
-  void read();
+  // Ниво 2: аритметични операции
+  Rational operator+(Rational const& q) const;
+  Rational operator-(Rational const& q) const;
+  Rational operator*(Rational const& q) const;
+  Rational operator/(Rational const& q) const;
+
+  Rational& operator+=(Rational const& q);
+  Rational& operator*=(Rational const& q);
+
+  friend std::istream& operator>>(std::istream& is, Rational& r);
 }; // !!! onehalf(1, 2);
 
-// Ниво 2: аритметични операции
-Rational add(Rational p, Rational q);
-Rational subtract(Rational p, Rational q);
-Rational multiply(Rational p, Rational q);
-Rational divide(Rational p, Rational q);
+Rational operator*(long n, Rational const& r);
+
+// Ниво 2: операции за вход и изход
+std::istream& operator>>(std::istream& is, Rational& r);
+std::ostream& operator<<(std::ostream& os, Rational const& r);
 
 #endif

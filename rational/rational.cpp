@@ -37,9 +37,9 @@ Rational::Rational(long n, long d) {
   // !!! ::set(n, d);
 }
 
-void Rational::print() const {
+std::ostream& operator<<(std::ostream& os, Rational const& r) {
   // !!! numer++;
-  cout << numer << '/' << denom;
+  return os << r.getNumerator() << '/' << r.getDenominator();
 }
 
 double Rational::toDouble() const {
@@ -47,33 +47,57 @@ double Rational::toDouble() const {
 }
 
 // Ниво 2: мутатори
-void Rational::read() {
+std::istream& operator>>(std::istream& is, Rational& r) {
   char c; // въвеждане на /
   long n, d;
-  cin >> n >> c >> d;
-  set(n, d);
+  is >> n >> c >> d;
+  r.set(n, d);
+  return is;
 }
 
 // Ниво 2: аритметични операции
-Rational add(Rational p, Rational q) {
+Rational Rational::operator+(Rational const& q) const {
   // !!! cout << this->getNumerator() << endl;
-  return Rational(p.getNumerator() * q.getDenominator() +
-                  q.getNumerator() * p.getDenominator(),
-                  p.getDenominator() * q.getDenominator());
+  return Rational(getNumerator() * q.getDenominator() +
+                  q.getNumerator() * getDenominator(),
+                  getDenominator() * q.getDenominator());
 }
 
-Rational subtract(Rational p, Rational q) {
-  return Rational(p.getNumerator() * q.getDenominator() -
-                  q.getNumerator() * p.getDenominator(),
-                  p.getDenominator() * q.getDenominator());
+Rational Rational::operator-(Rational const& q) const {
+  return Rational(getNumerator() * q.getDenominator() -
+                  q.getNumerator() * getDenominator(),
+                  getDenominator() * q.getDenominator());
 }
 
-Rational multiply(Rational p, Rational q) {
-  return Rational(p.getNumerator() * q.getNumerator(),
-                  p.getDenominator() * q.getDenominator());
+Rational& Rational::operator*=(Rational const& q) {
+  set(getNumerator() * q.getNumerator(), getDenominator() * q.getDenominator());
+  return *this;
 }
 
-Rational divide(Rational p, Rational q) {
-  return Rational(p.getNumerator() * q.getDenominator(),
-                  p.getDenominator() * q.getNumerator());
+Rational& Rational::operator+=(Rational const& q) {
+  return (*this = *this + q);
+}
+
+Rational Rational::operator*(Rational const& q) const {
+  /*  return Rational(getNumerator() * q.getNumerator(),
+                  getDenominator() * q.getDenominator());
+  */
+  Rational r = *this;
+  r *= q;
+  return r;
+}
+
+Rational Rational::operator/(Rational const& q) const {
+  return Rational(getNumerator() * q.getDenominator(),
+                  getDenominator() * q.getNumerator());
+}
+
+Rational operator*(long n, Rational const& r) {
+  // !!!  return r * n;
+  //  return r * Rational(n);
+  return r.operator*(n);
+}
+
+Rational::operator double() const {
+  return toDouble();
 }

@@ -23,6 +23,8 @@ public:
   
   void print() const;
 
+  Player& operator()(int s);
+
   ~Player();
 };
 

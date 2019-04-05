@@ -12,7 +12,8 @@ void testPlayer() {
   Player p2;//
   p2 = p1;
   p2.setName("Гандалф Белия");
-  p2.setScore(55);
+  // p2.setScore(55);
+  p2(10);
   p1.print();
   p2.print();
   anonymousPrint(p2);

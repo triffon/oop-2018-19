@@ -41,3 +41,8 @@ Player& Player::operator=(Player const& p) {
   }
   return *this;
 }
+
+Player& Player::operator()(int s) {
+  setScore(getScore() + s);
+  return *this;
+}
