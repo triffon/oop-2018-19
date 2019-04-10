@@ -41,7 +41,7 @@ using mathop  = double (*)(double, double);
 
 double accumulate(mathop op, double base_value,
                   int a, int b,
-                  mathfun f, nextfun next) {
+                  auto f, nextfun next) {
   double result = base_value;
   for(int i = a; i <= b; i = next(i))
     result = op(result, f(i));
@@ -52,12 +52,12 @@ int fact(int n) {
   return accumulate(mult, 1, 1, n, id, plus1);
 }
 
-double expt2(int n) {
-  return accumulate(mult, 1, 1, n, const2, plus1);
+double expt(double x, int n) {
+  return accumulate(mult, 1, 1, n, [x](double i) { return x; }, plus1);
 }
 
 double termexp(double i) {
-  return expt2(i) / fact(i);
+  return expt(2, i) / fact(i);
 }
 
 double myexp2(int n) {
@@ -76,9 +76,10 @@ double mysin2(int n) {
 
 void testaccumulate() {
   std::cout << accumulate(plus, 0, 1, 1024, log2, mult2) << std::endl;
-  std::cout << accumulate(mult, 1, 5, 50, std::sin, plus1) << std::endl;
+  std::cout << accumulate(mult, 1, 5, 50, sin, plus1) << std::endl;
   std::cout << fact(7) << std::endl;
-  std::cout << expt2(10) << std::endl;
+  std::cout << expt(2, 10) << std::endl;
+  std::cout << expt(3, 5) << std::endl;
   std::cout << myexp2(10) << std::endl;
   std::cout << exp(2) << std::endl;
   std::cout << mysin2(10) << std::endl;
@@ -112,7 +113,7 @@ void testderive() {
 
 int main() {
   // testtypes();
-  // testaccumulate();
-  testderive();
+  testaccumulate();
+  // testderive();
   return 0;
 }
