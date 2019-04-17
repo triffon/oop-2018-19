@@ -1,6 +1,8 @@
 #ifndef __PLAYER_H
 #define __PLAYER_H
 
+#include <iostream>
+
 const int MAX_NAME = 100;
 
 class Player {
@@ -21,12 +23,14 @@ public:
   void setName(char const* n);
   void setScore(int s);
   
-  void print() const;
+  void print(std::ostream& = std::cout) const;
 
   Player& operator()(int s);
 
   ~Player();
 };
+
+std::ostream& operator<<(std::ostream& os, Player const& p);
 
 #endif
 

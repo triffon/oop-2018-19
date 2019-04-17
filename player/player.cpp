@@ -24,10 +24,9 @@ void Player::setScore(int s) {
   score = s;
 }
 
-void Player::print() const {
-  std::cout << "Играчът " << name
-            << " има " << score << " точки"
-            << std::endl;
+void Player::print(std::ostream& os) const {
+  os << "Играчът " << getName()
+     << " има " << getScore() << " точки";
 }
 
 Player::~Player() {
@@ -45,4 +44,9 @@ Player& Player::operator=(Player const& p) {
 Player& Player::operator()(int s) {
   setScore(getScore() + s);
   return *this;
+}
+
+std::ostream& operator<<(std::ostream& os, Player const& p) {
+  p.print(os);
+  return os << std::endl;
 }
