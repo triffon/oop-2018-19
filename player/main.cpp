@@ -1,6 +1,7 @@
 #include <iostream>
 #include "player.h"
 #include "hero.h"
+#include "superhero.h"
 
 void anonymousPrint(Player p) {
   p.setName("<Анонимен>");
@@ -47,10 +48,54 @@ void testInheritance() {
   ph = (Hero*)pp;
   std::cout << *ph;
   std::cout << g.getName() << std::endl;
+  Hero g2 = g;
+  std::cout << g2;
+
+  SuperHero s("Супермен", 100, 5, "летене", 10);
+  std::cout << s;
+  s.becomeSuperHero();
+  std::cout << s;
+  s.stopBeingSuperHero();
+  std::cout << s;
+
+  SuperHero s2;
+  s2 = s;
+  std::cout << s2;
+  s2.setPower("хвърчене");
+  std::cout << s << s2;
+}
+
+template <typename H1, typename H2>
+Hero* battle(H1& h1, H2& h2, unsigned prize) {
+  Hero* winner = nullptr;
+  std::cout << "Битка между ";
+  h1.print();
+  std::cout << " и ";
+  h2.print();
+  std::cout << std::endl;
+  if (h1.getLevel() > h2.getLevel())
+    winner = &h1;
+  if (h1.getLevel() < h2.getLevel())
+    winner = &h2;
+  if (winner != nullptr) {
+    std::cout << "Победител е: " << *winner;
+    winner->setScore(winner->getScore() + prize);
+  } else
+    std::cout << "Няма победител!" << std::endl;
+  return winner;
+}
+
+void testBattle() {
+  Hero g("Гандалф Сивия", 45, 10);
+  SuperHero s("Супермен", 100, 5, "летене", 10);
+  battle(g, s, 20);
+  s.becomeSuperHero();
+  battle(g, s, 20);  
 }
 
 int main() {
   // testPlayer();
-  testInheritance();
+  // testInheritance();
+  testBattle();
   return 0;
 }
