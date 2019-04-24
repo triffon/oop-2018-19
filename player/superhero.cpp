@@ -47,7 +47,6 @@ SuperHero& SuperHero::operator=(SuperHero const& sh) {
   if (this != &sh) {
     // (Hero&)*this = sh;
     Hero::operator=(sh);
-    delete[] power;
     copy(sh);
   }
   return *this;
