@@ -23,7 +23,7 @@ public:
   void setName(char const* n);
   void setScore(int s);
   
-  void print(std::ostream& = std::cout) const;
+  virtual void print(std::ostream& = std::cout) const;
 
   Player& operator()(int s);
 

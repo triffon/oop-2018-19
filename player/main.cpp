@@ -2,6 +2,7 @@
 #include "player.h"
 #include "hero.h"
 #include "superhero.h"
+#include "bot.h"
 
 void anonymousPrint(Player p) {
   p.setName("<Анонимен>");
@@ -93,9 +94,28 @@ void testBattle() {
   battle(g, s, 20);  
 }
 
+void testBinding() {
+  Player* pp;
+  pp = new Player("Кетнис Евърдийн", 55);
+  std::cout << *pp;
+  //  pp->print();
+  pp = new Hero("Гандалф Сивия", 45, 10);
+  std::cout << *pp;
+  //pp->print();
+  pp = new SuperHero("Супермен", 100, 5, "летене", 10);
+  std::cout << *pp;
+  //pp->print();
+  Bot b("HAL 9000", 100, 9000);
+  pp = &b;
+  //std::cout << *pp;
+  pp->print();
+  b.print();
+}
+
 int main() {
   // testPlayer();
   // testInheritance();
-  testBattle();
+  // testBattle();
+  testBinding();
   return 0;
 }
