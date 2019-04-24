@@ -5,7 +5,7 @@
 #include "player.h"
 #include "ai.h"
 
-class Bot : public Player, public AI {
+class Bot : virtual public Player, public AI {
 private:
   unsigned difficulty;
 

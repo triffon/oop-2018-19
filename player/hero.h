@@ -5,7 +5,7 @@
 
 #include "player.h"
 
-class Hero : public Player {
+class Hero : virtual public Player {
   unsigned level;
 
 public:

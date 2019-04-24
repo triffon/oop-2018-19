@@ -26,6 +26,7 @@ void testPlayer() {
   std::cout << p2;
 }
 
+/*
 void testInheritance() {
   Hero g("Гандалф Сивия", 45, 10);
   Player k("Кетнис Евърдийн", 55);
@@ -67,6 +68,7 @@ void testInheritance() {
   s2.setPower("хвърчене");
   std::cout << s << s2;
 }
+*/
 
 Hero* battle(Hero& h1, Hero& h2, unsigned prize) {
   Hero* winner = nullptr;
