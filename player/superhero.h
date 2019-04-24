@@ -34,7 +34,5 @@ public:
 
 };
 
-std::ostream& operator<<(std::ostream& os, SuperHero const& sh);
-
 
 #endif

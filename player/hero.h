@@ -13,11 +13,9 @@ public:
        int s = 0,
        unsigned lvl = 1);
 
-  unsigned getLevel() const { return level; }
+  virtual unsigned getLevel() const { return level; }
 
   void print(std::ostream& os = std::cout) const;
 };
-
-std::ostream& operator<<(std::ostream& os, Hero const& h);
 
 #endif

@@ -11,8 +11,3 @@ void Bot::print(std::ostream& os) const {
   os << " и е бот с ниво на трудност "
      << getDifficulty();
 }
-
-std::ostream& operator<<(std::ostream& os, Bot const& b) {
-  b.print(os);
-  return os << std::endl;
-}

@@ -27,7 +27,9 @@ public:
 
   Player& operator()(int s);
 
-  ~Player();
+  virtual ~Player();
+
+  void prettyPrint() const;
 };
 
 std::ostream& operator<<(std::ostream& os, Player const& p);

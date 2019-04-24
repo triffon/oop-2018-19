@@ -23,11 +23,6 @@ unsigned SuperHero::getLevel() const {
   return Hero::getLevel();
 }
 
-std::ostream& operator<<(std::ostream& os, SuperHero const& sh) {
-  sh.print(os);
-  return os << std::endl;
-}
-
 void SuperHero::print(std::ostream& os) const {
   Player::print();
   os << " и е супергерой на ниво " << getLevel()

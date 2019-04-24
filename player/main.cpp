@@ -1,4 +1,5 @@
 #include <iostream>
+#include <typeinfo>
 #include "player.h"
 #include "hero.h"
 #include "superhero.h"
@@ -66,8 +67,7 @@ void testInheritance() {
   std::cout << s << s2;
 }
 
-template <typename H1, typename H2>
-Hero* battle(H1& h1, H2& h2, unsigned prize) {
+Hero* battle(Hero& h1, Hero& h2, unsigned prize) {
   Hero* winner = nullptr;
   std::cout << "Битка между ";
   h1.print();
@@ -89,9 +89,13 @@ Hero* battle(H1& h1, H2& h2, unsigned prize) {
 void testBattle() {
   Hero g("Гандалф Сивия", 45, 10);
   SuperHero s("Супермен", 100, 5, "летене", 10);
-  battle(g, s, 20);
+  Hero& h1 = g;
+  Hero& h2 = s;
+  battle(h1, h2, 20);
   s.becomeSuperHero();
-  battle(g, s, 20);  
+  battle(h1, h2, 20);
+  std::cout << typeid(h1).name() << ' ' << typeid(h2).name() << std::endl;
+  std::cout << typeid(std::cout).name() << std::endl;
 }
 
 void testBinding() {
@@ -99,23 +103,30 @@ void testBinding() {
   pp = new Player("Кетнис Евърдийн", 55);
   std::cout << *pp;
   //  pp->print();
+  //pp->prettyPrint();
+  delete pp;
   pp = new Hero("Гандалф Сивия", 45, 10);
   std::cout << *pp;
   //pp->print();
+  //pp->prettyPrint();
+  delete pp;
   pp = new SuperHero("Супермен", 100, 5, "летене", 10);
   std::cout << *pp;
   //pp->print();
+  //pp->prettyPrint();
   Bot b("HAL 9000", 100, 9000);
   pp = &b;
-  //std::cout << *pp;
-  pp->print();
-  b.print();
+  //pp->prettyPrint();
+  std::cout << *pp;
+  std::cout << b;
+  //pp->print();
+  //b.print();
 }
 
 int main() {
   // testPlayer();
   // testInheritance();
-  // testBattle();
-  testBinding();
+  testBattle();
+  // testBinding();
   return 0;
 }

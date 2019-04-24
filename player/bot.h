@@ -16,8 +16,6 @@ public:
 
   void print(std::ostream& os = std::cout) const;
 
-  friend std::ostream& operator<<(std::ostream& os, Bot const& p);
-
 };
 
 

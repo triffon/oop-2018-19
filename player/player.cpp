@@ -50,3 +50,9 @@ std::ostream& operator<<(std::ostream& os, Player const& p) {
   p.print(os);
   return os << std::endl;
 }
+
+void Player::prettyPrint() const {
+  std::cout << "------------------------------ [Играч] ------------------------------\n";
+  print();
+  std::cout << "\n---------------------------------------------------------------------\n";
+}
