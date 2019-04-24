@@ -4,6 +4,7 @@
 #include "hero.h"
 #include "superhero.h"
 #include "bot.h"
+#include "boss.h"
 
 void anonymousPrint(Player p) {
   p.setName("<Анонимен>");
@@ -114,7 +115,7 @@ void testBinding() {
   std::cout << *pp;
   //pp->print();
   //pp->prettyPrint();
-  Bot b("HAL 9000", 100, 9000);
+  Bot b("HAL 9000", 100, "α-β", 0.7, 9000);
   pp = &b;
   //pp->prettyPrint();
   std::cout << *pp;
@@ -123,10 +124,19 @@ void testBinding() {
   //b.print();
 }
 
+void testBoss() {
+  Boss boss("Саурон", 50, "Тъмни сили", 2.8, 
+            100, 20, 1000);
+  boss.print();
+  std::cout << ((Hero&)boss).getName() << std::endl;
+  std::cout << ((Bot&)boss).getName() << std::endl;
+}
+
 int main() {
   // testPlayer();
   // testInheritance();
-  testBattle();
+  // testBattle();
   // testBinding();
+  testBoss();
   return 0;
 }

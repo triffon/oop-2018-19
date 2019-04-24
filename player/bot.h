@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include "player.h"
+#include "ai.h"
 
-class Bot : public Player {
+class Bot : public Player, public AI {
 private:
   unsigned difficulty;
 
 public:
-  Bot(char const* n = "<Анонимен>", int s = 0, unsigned d = 1);
+  Bot(char const* n = "<Анонимен>", int s = 0,
+      char const* algo = "<неизвестен>", double t = 0, unsigned d = 1);
 
 
   unsigned getDifficulty() const { return difficulty; }
@@ -18,5 +20,5 @@ public:
 
 };
 
-
+std::ostream& operator<<(std::ostream& os, Bot const& b);
 #endif
