@@ -39,9 +39,10 @@ using nextfun = int (*)(int);
 using mathfun = double (*)(double);
 using mathop  = double (*)(double, double);
 
+template <typename F>
 double accumulate(mathop op, double base_value,
                   int a, int b,
-                  auto f, nextfun next) {
+                  F f, nextfun next) {
   double result = base_value;
   for(int i = a; i <= b; i = next(i))
     result = op(result, f(i));
@@ -93,7 +94,8 @@ double derivative(double x) {
   return (function(x + EPS) - function(x)) / EPS;
 }
 
-auto derive(auto f) {
+template <typename F>
+auto derive(F f) {
   //function = f;
   //return derivative;
   return [f](double x) {
