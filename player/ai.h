@@ -1,7 +1,7 @@
 #ifndef __AI_H
 #define __AI_H
 
-#include "printable.h"
+#include "../common/printable.h"
 
 class AI : virtual public Printable {
 private:

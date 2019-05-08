@@ -1,24 +1,7 @@
 #include <iostream>
-#include <cstring>
 #include "player.h"
 
-Player::Player(char const* n, int s) : name(nullptr), score(s) {
-  setName(n);
-}
-
-Player::Player(Player const& p) : name(nullptr), score(p.score) {
-  // !!! name = p.name;
-  // !!! name = new char[std::max((int)strlen(p.name) + 1, MAX_NAME)];
-  // !!! strcpy(name, p.name);
-  setName(p.name);
-}
-
-void Player::setName(char const* n) {
-  delete[] name;
-  const int NAME_LENGTH = strlen(n);
-  name = new char[NAME_LENGTH + 1];
-  strcpy(name, n);
-}
+Player::Player(char const* n, int s) : Named(n), score(s) {}
 
 void Player::setScore(int s) {
   score = s;
@@ -27,18 +10,6 @@ void Player::setScore(int s) {
 void Player::print(std::ostream& os) const {
   os << "Играчът " << getName()
      << " има " << getScore() << " точки";
-}
-
-Player::~Player() {
-  delete[] name;
-}
-
-Player& Player::operator=(Player const& p) {
-  if (this != &p) {
-    setName(p.name);
-    score = p.score;
-  }
-  return *this;
 }
 
 Player& Player::operator()(int s) {
