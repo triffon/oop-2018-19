@@ -16,6 +16,9 @@ public:
   virtual unsigned getLevel() const { return level; }
 
   void print(std::ostream& os = std::cout) const;
+
+protected:
+  void printDirect(std::ostream& os = std::cout) const;
 };
 
 #endif

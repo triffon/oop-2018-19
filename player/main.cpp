@@ -129,9 +129,15 @@ void testBinding() {
 void testBoss() {
   Boss boss("Саурон", 50, "Тъмни сили", 2.8, 
             100, 20, 1000);
-  boss.print();
+  std::cout << boss;
   std::cout << ((Hero&)boss).getName() << std::endl;
   std::cout << ((Bot&)boss).getName() << std::endl;
+  Bot b("HAL 9000", 100, "α-β", 0.7, 9000);
+  std::cout << b;
+  Hero h("Гандалф Сивия", 45, 10);
+  std::cout << h;
+  Player* p = &h;
+  p->print();
 }
 
 int main() {

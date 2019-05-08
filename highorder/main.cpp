@@ -116,6 +116,6 @@ void testderive() {
 int main() {
   // testtypes();
   testaccumulate();
-  // testderive();
+  testderive();
   return 0;
 }

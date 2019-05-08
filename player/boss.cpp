@@ -6,8 +6,13 @@ Boss::Boss(char const* n, int s,
   Player(n, s), Hero(n, s, lvl), Bot(n, s, algo, t, d), damage(dmg) {}
 
 void Boss::print(std::ostream& os) const {
-  Hero::print(os);
-  Bot::print(os);
-  os << " и нанася поражения " << getDamage();
+  Player::print(os);
+  printDirect(os);
 }
 
+void Boss::printDirect(std::ostream& os) const {
+  os << ", който е boss";
+  Hero::printDirect(os);
+  Bot::printDirect(os);
+  os << " и нанася поражения " << getDamage();
+}

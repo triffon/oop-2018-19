@@ -6,12 +6,17 @@ Bot::Bot(char const* n, int s,
                        difficulty(d)
 {}
 
-void Bot::print(std::ostream& os) const {
-  Player::print();
+void Bot::printDirect(std::ostream& os) const {
   os << " и е бот с ниво на трудност "
      << getDifficulty()
-     << ", реализиран от";
-  AI::print();
+     << ", реализиран от ";
+  AI::print(os);
+}
+
+
+void Bot::print(std::ostream& os) const {
+  Player::print(os);
+  printDirect(os);
 }
 
 std::ostream& operator<<(std::ostream& os, Bot const& b) {
