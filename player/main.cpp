@@ -141,13 +141,36 @@ void testBoss() {
 }
 
 void testPrintable() {
+  /*
   Boss boss("Саурон", 50, "Тъмни сили", 2.8, 
             100, 20, 1000);
   Printable* p = &boss;
-  std::cout << *p;
+  p->print();
   Hero h("Гандалф Сивия", 45, 10);
   p = &h;
-  std::cout << *p;
+  p->print();
+  */
+
+  Printable* printables[] =
+    {
+     new Player("Кетнис Евърдийн", 55),
+     new Hero("Гандалф Сивия", 45, 10),
+     new SuperHero("Супермен", 100, 5, "летене", 10),
+     new Bot("HAL 9000", 100, "α-β", 0.7, 9000),
+     new Boss("Саурон", 50, "Тъмни сили", 2.8, 
+                   100, 20, 1000),
+     new AI("GAN", 0.9)
+    };
+
+  const int N = sizeof(printables) / sizeof(Printable*);
+  for(int i = 0; i < N; i++) {
+    printables[i]->print();
+    std::cout << std::endl;
+  }
+
+  for(int i = 0; i < N; i++)
+    delete printables[i];
+  
 }
 
 int main() {
