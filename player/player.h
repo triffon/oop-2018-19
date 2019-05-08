@@ -1,11 +1,11 @@
 #ifndef __PLAYER_H
 #define __PLAYER_H
 
-#include <iostream>
+#include "printable.h"
 
 const int MAX_NAME = 100;
 
-class Player {
+class Player : virtual public Printable {
   // !!! char name[MAX_NAME];
   char* name;
   // поне MAX_NAME байта заделени за name

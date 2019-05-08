@@ -1,9 +1,9 @@
 #ifndef __AI_H
 #define __AI_H
 
-#include <iostream>
+#include "printable.h"
 
-class AI {
+class AI : virtual public Printable {
 private:
   char* algorithm;
   double threshold;

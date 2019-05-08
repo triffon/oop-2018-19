@@ -140,11 +140,22 @@ void testBoss() {
   p->print();
 }
 
+void testPrintable() {
+  Boss boss("Саурон", 50, "Тъмни сили", 2.8, 
+            100, 20, 1000);
+  Printable* p = &boss;
+  std::cout << *p;
+  Hero h("Гандалф Сивия", 45, 10);
+  p = &h;
+  std::cout << *p;
+}
+
 int main() {
   // testPlayer();
   // testInheritance();
   // testBattle();
   // testBinding();
-  testBoss();
+  // testBoss();
+  testPrintable();
   return 0;
 }
