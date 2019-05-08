@@ -1,6 +1,10 @@
 #include <iostream>
 #include "rstack.h"
 
+const int INITIAL_CAPACITY = 10;
+const int EMPTY_STACK = -1;
+const int RESIZE_FACTOR = 2;
+
 ResizingStack::ResizingStack() {
   capacity = INITIAL_CAPACITY;
   a = new int[capacity];
@@ -11,7 +15,7 @@ bool ResizingStack::empty() const {
   return top == EMPTY_STACK;
 }
 
-bool ResizingStack::push(int x) {
+bool ResizingStack::push(int const& x) {
   if (full()) {
     resize();
   }

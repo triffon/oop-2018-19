@@ -1,11 +1,9 @@
 #ifndef __RSTACK_H
 #define __RSTACK_H
 
-const int INITIAL_CAPACITY = 10;
-const int EMPTY_STACK = -1;
-const int RESIZE_FACTOR = 2;
+#include "abstract_stack.h"
 
-class ResizingStack {
+class ResizingStack : public AbstractStack<int> {
   // представяне
   int* a;            // указател към масив в динамичната памет за стека
   int top;           // връх на стека
@@ -35,7 +33,7 @@ public:
   bool empty() const;
 
   // включване на елемент и връща дали е било успешно
-  bool push(int x);
+  bool push(int const& x);
 
   // изключване на елемент
   int pop();

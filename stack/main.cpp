@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstring>
-//#include "stack.h"
-//#include "rstack.h"
+#include "stack.h"
+#include "rstack.h"
 #include "lstack.cpp"
 
 //using Stack = ResizingStack;
-using Stack = LinkedStack<int>;
+using MyStack = LinkedStack<int>;
 
 void testStack() {
-  Stack s;
+  MyStack s;
   std::cout << "s.empty() == " << s.empty() << std::endl;
   s.push(42);
   std::cout << "s.empty() == " << s.empty() << std::endl;
@@ -29,7 +29,7 @@ char printDigit(int d) {
 
 // извежда n в k-ична бройна система
 void printInBase(int n, int k) {
-  Stack s;
+  MyStack s;
   std::cout << n << "(10) --> ";
   while (n > 0) {
     s.push(n % k);
@@ -79,8 +79,8 @@ int todigit(char c) {
 */
 
 int calculate_expr(char const* s) {
-  Stack args;
-  Stack ops;
+  MyStack args;
+  MyStack ops;
   while(*s) {
     // magic
     if (isdigit(*s))
@@ -123,7 +123,7 @@ bool matchParentheses(char open, char close) {
 }
 
 bool checkParentheses(char const* expr) {
-  Stack pstack;
+  MyStack pstack;
   while(*expr) {
     if (isOpenParenthesis(*expr))
       pstack.push(*expr);
@@ -184,10 +184,10 @@ void testParentheses() {
 }
 
 void testCopy() {
-  Stack s1;
+  MyStack s1;
   for(int i = 0; i < 10; i++)
     s1.push(i);
-  Stack s2;
+  MyStack s2;
   s2 = s1;
   s2.pop();
   s2.push(20);
@@ -199,12 +199,21 @@ void testCopy() {
 
 void testCreateDestroy() {
   for(int i = 0; i < 1E8; i++) {
-    // Stack s;
-    Stack* s = new Stack;
+    // MyStack s;
+    MyStack* s = new MyStack;
     for(int j = 0; j < 10; j++)
       s->push(j);
     delete s;
   }
+}
+
+void testAbstractStack() {
+  AbstractStack<int>* s = new Stack;
+  s = new ResizingStack;
+  s = new LinkedStack<int>;
+  s->push(1);
+  std::cout << s->pop();
+  AbstractStack<AbstractStack<double> >* ss;
 }
 
 int main() {
@@ -212,7 +221,8 @@ int main() {
   // testPrintInBase();
   // testExpression();
   // testParentheses();
-  testCopy();
+  // testCopy();
   // testCreateDestroy();
+  testAbstractStack();
   return 0;
 }

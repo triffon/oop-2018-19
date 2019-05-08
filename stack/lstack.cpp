@@ -1,6 +1,8 @@
 #ifndef __LSTACK_CPP
 #define __LSTACK_CPP
 
+#include "abstract_stack.h"
+
 #include <iostream>
 
 template <typename T>
@@ -10,7 +12,7 @@ struct StackElement {
 };
 
 template <typename T>
-class LinkedStack {
+class LinkedStack : public AbstractStack<T> {
   // представяне
   StackElement<T>* top; // указател към връх на стека
 

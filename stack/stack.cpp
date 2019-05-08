@@ -1,6 +1,8 @@
 #include <iostream>
 #include "stack.h"
 
+const int EMPTY_STACK = -1;
+
 Stack::Stack() {
   top = EMPTY_STACK;
 }
@@ -9,7 +11,7 @@ bool Stack::empty() const {
   return top == EMPTY_STACK;
 }
 
-bool Stack::push(int x) {
+bool Stack::push(int const& x) {
   if (full()) {
     std::cerr << "Опит за добавяне в пълен стек!\n";
     return false;

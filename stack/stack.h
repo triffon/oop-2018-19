@@ -1,10 +1,11 @@
 #ifndef __STACK_H
 #define __STACK_H
 
-const int MAX_STACK = 200;
-const int EMPTY_STACK = -1;
+#include "abstract_stack.h"
 
-class Stack {
+const int MAX_STACK = 200;
+
+class Stack : public AbstractStack<int> {
   // представяне
   int a[MAX_STACK];  // памет за стека
   int top;           // връх на стека
@@ -21,7 +22,7 @@ public:
   bool empty() const;
 
   // включване на елемент и връща дали е било успешно
-  bool push(int x);
+  bool push(int const& x);
 
   // изключване на елемент
   int pop();
