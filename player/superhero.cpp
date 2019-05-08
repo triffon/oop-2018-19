@@ -4,6 +4,7 @@
 SuperHero::SuperHero
    (char const* n, int s, unsigned lvl,
     char const* p, unsigned b) :
+     Player(n, s),
      Hero(n, s, lvl),
      power(nullptr), boost(b),
      super(false) {
