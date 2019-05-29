@@ -25,7 +25,7 @@ public:
 
   // отчита time единици работа по задачата
   // връща броя неизползвани единици време
-  virtual unsigned work(unsigned time) = 0;
+  virtual unsigned work(unsigned time = 1) = 0;
 
   
 };

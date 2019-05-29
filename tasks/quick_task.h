@@ -1,3 +1,6 @@
+#ifndef __QUICK_TASK_H
+#define __QUICK_TASK_H
+
 #include "task.h"
 
 class QuickTask : public Task {
@@ -9,7 +12,9 @@ public:
 
   unsigned getProgress() const { return finished; }
 
-  unsigned work(unsigned t);
+  unsigned work(unsigned t = 1);
 
   void print(std::ostream& os = std::cout) const;
 };
+
+#endif
