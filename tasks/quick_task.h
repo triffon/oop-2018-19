@@ -15,6 +15,8 @@ public:
   unsigned work(unsigned t = 1);
 
   void print(std::ostream& os = std::cout) const;
+
+  Cloneable* clone() const { return new QuickTask(*this); }
 };
 
 #endif

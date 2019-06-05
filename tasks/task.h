@@ -3,8 +3,9 @@
 
 #include "../common/printable.h"
 #include "../common/named.h"
+#include "../common/cloneable.h"
 
-class Task : public Printable, public Named {
+class Task : public Printable, public Named, public Cloneable {
   
 public:
 
