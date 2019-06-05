@@ -1,5 +1,6 @@
 #include "quick_task.h"
 #include "simple_task.h"
+#include "repeated_task.h"
 
 TEST_CASE("Quick task requires exactly one unit of work to finish") {
   QuickTask qt("лицева опора");
@@ -86,8 +87,8 @@ TEST_CASE("Repeated quick task requires exactly n units to finish") {
     CHECK(rt.work(3) == 3);
     CHECK(rt.isFinished());
   }
-
 }
+
 
 TEST_CASE("Repeated quick task reports progress correctly") {
   RepeatedTask rt("Лекция по ООП", QuickTask("Учебен час по ООП"), 3);
@@ -111,6 +112,7 @@ TEST_CASE("Repeated quick task reports progress correctly") {
     CHECK(rt.getProgress() == 3);
   }
 }
+
 
 TEST_CASE("Repeated simple task reports progress correctly") {
   RepeatedTask rt("Курс по ООП", SimpleTask("Лекция по ООП", 3), 15);
@@ -174,7 +176,7 @@ TEST_CASE("Repeated simple task reports progress correctly") {
 TEST_CASE("Repeated simple task takes exactly n * m units to finish") {
   RepeatedTask rt("Курс по ООП", SimpleTask("Лекция по ООП", 3), 15);
 
-  CHECK(!rt.isFinished())
+  CHECK(!rt.isFinished());
   CHECK(rt.work(2) == 0);
   CHECK(!rt.isFinished());
   CHECK(rt.work(1) == 0);
@@ -259,7 +261,7 @@ TEST_CASE("Repeated repeated quick task takes exactly n * m * k units to finish"
                   RepeatedTask("Лекция по ООП",
                                QuickTask("Учебен час по ООП"), 3), 15);
 
-  CHECK(!rt.isFinished())
+  CHECK(!rt.isFinished());
   CHECK(rt.work(2) == 0);
   CHECK(!rt.isFinished());
   CHECK(rt.work(1) == 0);
@@ -277,4 +279,3 @@ TEST_CASE("Repeated repeated quick task takes exactly n * m * k units to finish"
   CHECK(rt.work(15) == 15);
   CHECK(rt.isFinished());
 }
-
