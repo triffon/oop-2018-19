@@ -1,18 +1,18 @@
 #include "repeated_task.h"
 
 RepeatedTask::RepeatedTask(char const* n, Task const& t, unsigned r) :
-  Task(n), repetitions(r), repetitionProgress(0), current(nullptr) {
+  SimpleTask(n, r), current(nullptr) {
   prototype = (Task*)t.clone();
   reset();
 }
 
-RepeatedTask::RepeatedTask(RepeatedTask const& rt) : Task(rt) {
+RepeatedTask::RepeatedTask(RepeatedTask const& rt) : SimpleTask(rt) {
   copy(rt);
 }
 
 RepeatedTask& RepeatedTask::operator=(RepeatedTask const& rt) {
   if (&rt != this) {
-    Task::operator=(rt);
+    SimpleTask::operator=(rt);
     destroy();
     copy(rt);
   }
@@ -24,8 +24,6 @@ RepeatedTask::~RepeatedTask() {
 }
 
 void RepeatedTask::copy(RepeatedTask const& rt) {
-  repetitions = rt.repetitions;
-  repetitionProgress = rt.repetitionProgress;
   prototype = (Task*)rt.prototype->clone();
   current = (Task*)rt.current->clone();
 }
@@ -38,17 +36,17 @@ void RepeatedTask::destroy() {
 void RepeatedTask::print(std::ostream& os) const {
   os << "Повтаряща се ";
   Task::print(os);
-  os << ", която повтаря " << repetitions << " пъти задачата: (";
+  os << ", която повтаря " << getRepetitions() << " пъти задачата: (";
   current->print(os);
-  os << ") и вече са изпълнени " << repetitionProgress << " повторения";
+  os << ") и вече са изпълнени " << getRepetitionProgress() << " повторения";
 }
 
 unsigned RepeatedTask::getExecutionTime() const {
-  return repetitions * prototype->getExecutionTime();
+  return getRepetitions() * prototype->getExecutionTime();
 }
 
 unsigned RepeatedTask::getProgress() const {
-  return repetitionProgress * prototype->getExecutionTime() +
+  return getRepetitionProgress() * prototype->getExecutionTime() +
     current->getProgress();
 }
 
@@ -64,19 +62,19 @@ unsigned RepeatedTask::work(unsigned t) {
     return t;
 
   // завършили сме текущата задача
-  repetitionProgress++;
+  // "изработваме" едно повторение
   reset();
+  SimpleTask::work();
   // има ли още задачи и време?
-  if (isFinished())
+  if (isFinished() || t == 0)
     // не
     return t;
 
   // има още задачи за повтаряне
   // фаза 2: изпълняваме някакъв брой повторения на current
-  unsigned spentRepetitions = std::min(t / prototype->getExecutionTime(),
-                                       repetitions - repetitionProgress);
-  repetitionProgress += spentRepetitions;
-  t -= spentRepetitions * prototype->getExecutionTime();
+  unsigned leftRepetitions = SimpleTask::work(t / prototype->getExecutionTime());
+  (t %= prototype->getExecutionTime())
+     += leftRepetitions * prototype->getExecutionTime();
 
   // има ли още задачи?
   if (isFinished() || t == 0)

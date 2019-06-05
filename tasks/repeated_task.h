@@ -1,13 +1,11 @@
 #ifndef __REPEATED_TASK_H
 #define __REPEATED_TASK_H
 
-#include "task.h"
+#include "simple_task.h"
 
-class RepeatedTask : public Task {
+class RepeatedTask : public SimpleTask {
   Task const* prototype;
   Task* current;
-  unsigned repetitions;
-  unsigned repetitionProgress;
 
   void reset() {
     delete current;
@@ -33,6 +31,10 @@ public:
   void print(std::ostream& os = std::cout) const;
 
   Cloneable* clone() const { return new RepeatedTask(*this); }
+
+  unsigned getRepetitions() const { return SimpleTask::getExecutionTime(); }
+
+  unsigned getRepetitionProgress() const { return SimpleTask::getProgress(); }
 };
 
 #endif
