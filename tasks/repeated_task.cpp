@@ -65,14 +65,13 @@ unsigned RepeatedTask::work(unsigned t) {
 
   // завършили сме текущата задача
   repetitionProgress++;
+  reset();
   // има ли още задачи и време?
-  if (isFinished() || t == 0)
+  if (isFinished())
     // не
     return t;
 
   // има още задачи за повтаряне
-  reset();
-  
   // фаза 2: изпълняваме някакъв брой повторения на current
   unsigned spentRepetitions = std::min(t / prototype->getExecutionTime(),
                                        repetitions - repetitionProgress);
