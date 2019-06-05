@@ -5,7 +5,7 @@
 #include "../common/named.h"
 #include "../common/cloneable.h"
 
-class Task : public Printable, public Named, public Cloneable {
+class Task : public Printable, public Named, public Cloneable<Task> {
   
 public:
 

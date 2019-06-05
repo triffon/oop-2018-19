@@ -1,9 +1,10 @@
 #ifndef __CLONEABLE_H
 #define __CLONEABLE_H
 
+template <typename T>
 class Cloneable {
 public:
-  virtual Cloneable* clone() const = 0;
+  virtual T* clone() const = 0;
 };
 
 #endif

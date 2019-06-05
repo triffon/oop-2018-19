@@ -16,7 +16,7 @@ public:
 
   void print(std::ostream& os = std::cout) const;
 
-  Cloneable* clone() const { return new QuickTask(*this); }
+  Task* clone() const { return new QuickTask(*this); }
 };
 
 #endif

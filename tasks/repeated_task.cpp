@@ -2,7 +2,7 @@
 
 RepeatedTask::RepeatedTask(char const* n, Task const& t, unsigned r) :
   SimpleTask(n, r), current(nullptr) {
-  prototype = (Task*)t.clone();
+  prototype = t.clone();
   reset();
 }
 
@@ -24,8 +24,8 @@ RepeatedTask::~RepeatedTask() {
 }
 
 void RepeatedTask::copy(RepeatedTask const& rt) {
-  prototype = (Task*)rt.prototype->clone();
-  current = (Task*)rt.current->clone();
+  prototype = rt.prototype->clone();
+  current = rt.current->clone();
 }
 
 void RepeatedTask::destroy() {
