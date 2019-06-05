@@ -4,7 +4,7 @@
 #include "../common/doctest.h"
 #include "quick_task.h"
 
-#include "task_tests.h"
+//#include "task_tests.h"
 
 void testQuickTask() {
   QuickTask qt("лицева опора");
